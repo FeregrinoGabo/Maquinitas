@@ -32,4 +32,10 @@ public class Asignacion {
     @JoinColumn(name = "maquina_id")
     @ToString.Exclude
     private Maquina maquina;
+
+    @Override
+    public String toString() {
+        return String.format("Asignacion [Usuario = '%s', Tienda = '%s', Maquina = '%s'",
+                usuario, tienda, maquina);
+    }
 }
