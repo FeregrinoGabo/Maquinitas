@@ -1,4 +1,7 @@
 package com.gestionmaquinitas.GestionMaquinas.repository;
 
-public class UsuarioRepository {
+import com.gestionmaquinitas.GestionMaquinas.model.Usuario;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 }

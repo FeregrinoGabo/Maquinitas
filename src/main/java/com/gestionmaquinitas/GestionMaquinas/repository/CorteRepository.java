@@ -1,4 +1,7 @@
 package com.gestionmaquinitas.GestionMaquinas.repository;
 
-public class CorteRepository {
+import com.gestionmaquinitas.GestionMaquinas.model.Corte;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CorteRepository extends JpaRepository<Corte, Long> {
 }

@@ -1,4 +1,7 @@
 package com.gestionmaquinitas.GestionMaquinas.repository;
 
-public class MaquinaRepository {
+import com.gestionmaquinitas.GestionMaquinas.model.Maquina;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface MaquinaRepository extends JpaRepository<Maquina, Long> {
 }
