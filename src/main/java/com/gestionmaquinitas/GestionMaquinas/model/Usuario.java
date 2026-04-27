@@ -19,6 +19,7 @@ public class Usuario {
     private String nombre;
     private String apellidoPaterno;
     private String apellidoMaterno;
+
     private String username;
     private String contrasena;
 

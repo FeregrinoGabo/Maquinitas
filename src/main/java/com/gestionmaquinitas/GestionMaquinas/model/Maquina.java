@@ -1,6 +1,7 @@
 package com.gestionmaquinitas.GestionMaquinas.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.util.List;
@@ -20,6 +21,10 @@ public class Maquina {
     @Enumerated(EnumType.STRING)
     @Column(length = 15)
     private EstadoMaquina estado;
+
+    @Size(max = 100)
+    @Column(length = 100)
+    private String descripcion;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "empresa_id")
