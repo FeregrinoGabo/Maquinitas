@@ -1,4 +1,7 @@
 package com.gestionmaquinitas.GestionMaquinas.service;
 
-public class InventarioService {
+import org.springframework.stereotype.Service;
+
+@Service
+public class InventarioService implements IINventarioService{
 }

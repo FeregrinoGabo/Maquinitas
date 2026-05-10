@@ -1,4 +1,7 @@
 package com.gestionmaquinitas.GestionMaquinas.service;
 
-public class MaquinaService {
+import org.springframework.stereotype.Service;
+
+@Service
+public class MaquinaService implements IMaquinaService{
 }
