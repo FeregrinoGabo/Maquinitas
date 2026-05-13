@@ -7,6 +7,7 @@ import java.util.List;
 
 @Service
 public class MaquinaService implements IMaquinaService{
+
     @Override
     public List<MaquinaDTO> getMaquina() {
         return List.of();

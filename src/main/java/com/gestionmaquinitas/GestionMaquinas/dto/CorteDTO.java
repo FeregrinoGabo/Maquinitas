@@ -1,9 +1,6 @@
 package com.gestionmaquinitas.GestionMaquinas.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -11,7 +8,7 @@ import java.time.LocalDateTime;
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-
+@Builder
 public class CorteDTO {
     private Long id;
 
@@ -28,7 +25,7 @@ public class CorteDTO {
 
     private Long idAsignacion;
     private Long idMaquina;
-    private Long idTienda;
 
+    private Long idTienda;
     private String nombreTienda;
 }

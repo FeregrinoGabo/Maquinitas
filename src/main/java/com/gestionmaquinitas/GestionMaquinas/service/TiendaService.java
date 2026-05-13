@@ -7,6 +7,7 @@ import java.util.List;
 
 @Service
 public class TiendaService implements ITiendaService{
+
     @Override
     public List<TiendaDTO> getTiendas() {
         return List.of();

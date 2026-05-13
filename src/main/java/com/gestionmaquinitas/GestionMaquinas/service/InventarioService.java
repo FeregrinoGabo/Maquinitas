@@ -7,6 +7,7 @@ import java.util.List;
 
 @Service
 public class InventarioService implements IINventarioService{
+
     @Override
     public List<InventarioDTO> getInventario() {
         return List.of();

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CorteService implements ICorteService{
+
     @Override
     public CorteDTO getCorte(Long id) {
         return null;
