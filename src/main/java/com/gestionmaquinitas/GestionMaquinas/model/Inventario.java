@@ -17,7 +17,6 @@ public class Inventario {
     @Column(nullable = false)
     private String nombre;
 
-    @Column(nullable = false)
     private Integer stock;
 
     @ManyToOne(fetch = FetchType.LAZY)
