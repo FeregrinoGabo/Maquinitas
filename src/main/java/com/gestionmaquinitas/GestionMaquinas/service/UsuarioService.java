@@ -1,7 +1,7 @@
 package com.gestionmaquinitas.GestionMaquinas.service;
 
-import com.gestionmaquinitas.GestionMaquinas.dto.UsuarioDTO;
-import com.gestionmaquinitas.GestionMaquinas.mapper.Mapper;
+import com.gestionmaquinitas.GestionMaquinas.dto.response.UsuarioDTO;
+import com.gestionmaquinitas.GestionMaquinas.mapper.MapperDTO;
 import com.gestionmaquinitas.GestionMaquinas.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,7 @@ public class UsuarioService implements IUsuarioService{
 
     @Override
     public List<UsuarioDTO> getUsuario() {
-        return usuarioRepository.findAll().stream().map(Mapper::toDTO).toList();
+        return usuarioRepository.findAll().stream().map(MapperDTO::toDTO).toList();
     }
 
     @Override

@@ -1,6 +1,6 @@
 package com.gestionmaquinitas.GestionMaquinas.service;
 
-import com.gestionmaquinitas.GestionMaquinas.dto.EmpresaDTO;
+import com.gestionmaquinitas.GestionMaquinas.dto.response.EmpresaDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

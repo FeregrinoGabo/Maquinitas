@@ -1,6 +1,6 @@
 package com.gestionmaquinitas.GestionMaquinas.service;
 
-import com.gestionmaquinitas.GestionMaquinas.dto.UsuarioDTO;
+import com.gestionmaquinitas.GestionMaquinas.dto.response.UsuarioDTO;
 
 import java.util.List;
 

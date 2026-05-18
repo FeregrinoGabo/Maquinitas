@@ -1,4 +1,4 @@
-package com.gestionmaquinitas.GestionMaquinas.dto;
+package com.gestionmaquinitas.GestionMaquinas.dto.response;
 
 import lombok.*;
 

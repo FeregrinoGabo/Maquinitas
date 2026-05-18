@@ -1,6 +1,6 @@
 package com.gestionmaquinitas.GestionMaquinas.service;
 
-import com.gestionmaquinitas.GestionMaquinas.dto.CorteDTO;
+import com.gestionmaquinitas.GestionMaquinas.dto.response.CorteDTO;
 
 public interface ICorteService {
     CorteDTO getCorte(Long id);

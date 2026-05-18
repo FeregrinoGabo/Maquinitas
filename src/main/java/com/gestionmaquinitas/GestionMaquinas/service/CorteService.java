@@ -1,6 +1,6 @@
 package com.gestionmaquinitas.GestionMaquinas.service;
 
-import com.gestionmaquinitas.GestionMaquinas.dto.CorteDTO;
+import com.gestionmaquinitas.GestionMaquinas.dto.response.CorteDTO;
 import org.springframework.stereotype.Service;
 
 @Service

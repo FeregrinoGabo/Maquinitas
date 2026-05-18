@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-
+@Builder
 public class Corte {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

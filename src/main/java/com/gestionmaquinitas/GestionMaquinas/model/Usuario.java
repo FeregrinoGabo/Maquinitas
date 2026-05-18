@@ -2,6 +2,7 @@ package com.gestionmaquinitas.GestionMaquinas.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-
+@Builder
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,6 +28,8 @@ public class Usuario {
     @Column(length = 15)
     private RolUsuario rol;
 
+    @CreationTimestamp
+    @Column(updatable = false)
     private LocalDateTime fechaCreacion;
     private LocalDateTime fechaRetiro;
 

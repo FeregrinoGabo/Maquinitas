@@ -1,9 +1,9 @@
 package com.gestionmaquinitas.GestionMaquinas.mapper;
 
-import com.gestionmaquinitas.GestionMaquinas.dto.*;
+import com.gestionmaquinitas.GestionMaquinas.dto.response.*;
 import com.gestionmaquinitas.GestionMaquinas.model.*;
 
-public class Mapper {
+public class MapperDTO {
 
     //Mapeo Corte a CorteDTO
     public static CorteDTO toDTO(Corte c){
