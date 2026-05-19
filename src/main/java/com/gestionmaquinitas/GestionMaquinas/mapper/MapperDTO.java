@@ -114,4 +114,17 @@ public class MapperDTO {
     }
 
 
+    //Mapeo Entrada a EntradaDTO
+    public static EntradaDTO toDTO(Entrada e){
+        if (e == null) return null;
+
+        return EntradaDTO.builder()
+                .id(e.getId())
+                .cantidad(e.getCantidad())
+                .costo(e.getCosto())
+                .descripcion(e.getDescripcion())
+                .fechaLlegada(e.getFechaLlegada())
+                .idEncargado(e.getEncargado().getId())
+                .build();
+    }
 }

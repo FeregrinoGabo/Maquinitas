@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+
 public class AsignacionDTO {
     private Long id;
     private LocalDateTime fechaAsignacion;

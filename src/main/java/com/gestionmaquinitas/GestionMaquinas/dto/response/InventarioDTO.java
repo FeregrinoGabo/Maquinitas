@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+
 public class InventarioDTO {
     private Long id;
 
