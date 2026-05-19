@@ -2,6 +2,8 @@ package com.gestionmaquinitas.GestionMaquinas.dto.response;
 
 import lombok.*;
 
+import java.math.BigDecimal;
+
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -11,4 +13,5 @@ public class InventarioDTO {
 
     private String nombre;
     private Integer stock;
+    private BigDecimal costoPromedio;
 }

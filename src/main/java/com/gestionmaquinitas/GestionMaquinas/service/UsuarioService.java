@@ -1,5 +1,6 @@
 package com.gestionmaquinitas.GestionMaquinas.service;
 
+import com.gestionmaquinitas.GestionMaquinas.dto.request.UsuarioRequestDTO;
 import com.gestionmaquinitas.GestionMaquinas.dto.response.UsuarioDTO;
 import com.gestionmaquinitas.GestionMaquinas.mapper.MapperDTO;
 import com.gestionmaquinitas.GestionMaquinas.repository.UsuarioRepository;
@@ -20,7 +21,7 @@ public class UsuarioService implements IUsuarioService{
     }
 
     @Override
-    public UsuarioDTO createUsuario(UsuarioDTO usuarioDTO) {
+    public UsuarioDTO createUsuario(UsuarioRequestDTO usuarioDTO) {
         return null;
     }
 

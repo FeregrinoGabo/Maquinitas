@@ -3,6 +3,8 @@ package com.gestionmaquinitas.GestionMaquinas.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
+
 @Entity
 @Getter @Setter
 @NoArgsConstructor
@@ -18,6 +20,7 @@ public class Inventario {
     private String nombre;
 
     private Integer stock;
+    private BigDecimal costoPromedio;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "empresa_id", nullable = false)

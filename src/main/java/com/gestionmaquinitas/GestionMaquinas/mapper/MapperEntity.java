@@ -1,13 +1,14 @@
 package com.gestionmaquinitas.GestionMaquinas.mapper;
 
+import com.gestionmaquinitas.GestionMaquinas.dto.request.CorteRequestDTO;
 import com.gestionmaquinitas.GestionMaquinas.dto.request.UsuarioRequestDTO;
 import com.gestionmaquinitas.GestionMaquinas.dto.response.*;
 import com.gestionmaquinitas.GestionMaquinas.model.*;
 
 public class MapperEntity {
 
-    //Mapeo CorteDTO a Corte
-    public static Corte toDTO(CorteDTO c, Usuario usuario, Asignacion asignacion){
+    //Mapeo CorteRequestDTO a Corte
+    public static Corte toDTO(CorteRequestDTO c, Usuario usuario, Asignacion asignacion){
         if (c == null) return null;
 
         return Corte.builder()

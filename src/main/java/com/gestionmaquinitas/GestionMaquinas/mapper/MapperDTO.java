@@ -47,6 +47,7 @@ public class MapperDTO {
                 .id(i.getId())
                 .nombre(i.getNombre())
                 .stock(i.getStock())
+                .costoPromedio(i.getCostoPromedio())
                 .build();
     }
 
