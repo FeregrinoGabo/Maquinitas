@@ -1,14 +1,15 @@
 package com.gestionmaquinitas.GestionMaquinas.mapper;
 
-import com.gestionmaquinitas.GestionMaquinas.dto.request.CorteRequestDTO;
-import com.gestionmaquinitas.GestionMaquinas.dto.request.UsuarioRequestDTO;
-import com.gestionmaquinitas.GestionMaquinas.dto.response.*;
+import com.gestionmaquinitas.GestionMaquinas.dto.request.*;
 import com.gestionmaquinitas.GestionMaquinas.model.*;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class MapperEntity {
 
     //Mapeo CorteRequestDTO a Corte
-    public static Corte toDTO(CorteRequestDTO c, Usuario usuario, Asignacion asignacion){
+    public static Corte toEntity(CorteRequestDTO c, Usuario usuario, Asignacion asignacion){
         if (c == null) return null;
 
         return Corte.builder()
@@ -16,7 +17,6 @@ public class MapperEntity {
                 .fechaCorte(c.getFechaCorte())
                 .peluchesRestantes(c.getPeluchesRestantes())
                 .porcentajePactado(c.getPorcentajePactado())
-                .costoPorPeluche(c.getCostoPorPeluche())
                 .recargaPeluches(c.getRecargaPeluches())
                 .usuario(usuario)
                 .asignacion(asignacion)
@@ -24,31 +24,56 @@ public class MapperEntity {
     } 
 
 
-    //Mapeo EmpresaDTO a Empresa
-    public static EmpresaDTO toDTO(Empresa e){
-        return null;
+    //Mapeo EmpresaRequestDTO a Empresa
+    public static Empresa toEntity(EmpresaRequestDTO e){
+        if (e == null) return null;
+
+        return Empresa.builder()
+                .nombre(e.getNombre())
+                .build();
     }
 
 
-    //Mapeo InventarioDTO a Inventario
-    public static InventarioDTO toDTO(Inventario i){
-        return null;
+    //Mapeo InventarioRequestDTO a Inventario
+    public static Inventario toEntity(InventarioRequestDTO i){
+        if (i == null) return null;
+
+        return Inventario.builder()
+                .nombre(i.getNombre())
+                .stock(i.getStock())
+                .build();
     }
 
 
-    //Mapeo MaquinaDTO a Maquina
-    public static MaquinaDTO toDTO(Maquina m){
-        return null;
+    //Mapeo MaquinaRequestDTO a Maquina
+    public static Maquina toEntity(MaquinaRequestDTO m){
+        if (m == null) return null;
+
+        return Maquina.builder()
+                .color(m.getColor())
+                .capacidad(m.getCapacidad())
+                .estado(m.getEstado())
+                .descripcion(m.getDescripcion())
+                .build();
     }
 
 
-    //Mapeo TiendaDTO a Tienda
-    public static TiendaDTO toDTO(Tienda t){
-        return null;
+    //Mapeo TiendaRequestDTO a Tienda
+    public static Tienda toEntity(TiendaRequestDTO t){
+        if (t == null) return null;
+
+        return Tienda.builder()
+                .nombre(t.getNombre())
+                .pais(t.getPais())
+                .estado(t.getEstado())
+                .municipio(t.getMunicipio())
+                .colonia(t.getColonia())
+                .porcentajeBase(t.getPorcentajeBase())
+                .build();
     }
 
 
-    //Mapeo UsuarioDTO a Usuario
+    //Mapeo UsuarioRequestDTO a Usuario
     public static Usuario toEntity(UsuarioRequestDTO u){
         if (u == null) return null;
 
@@ -58,13 +83,32 @@ public class MapperEntity {
                 .apellidoMaterno(u.getApellidoMaterno())
                 .username(u.getUsername())
                 .contrasena(u.getContrasena())
-                .rol(u.getRol())
                 .build();
     }
 
 
-    //Mapeo AsignacionDTO a Asignacion
-    public static AsignacionDTO toDTO(Asignacion a){
-        return null;
+    //Mapeo AsignacionRequestDTO a Asignacion
+    public static Asignacion toEntity(AsignacionRequestDTO a, Usuario usuario, Tienda tienda, Maquina maquina){
+        if (a == null) return null;
+
+        return Asignacion.builder()
+                .fechaAsignacion(a.getFechaAsignacion())
+                .usuario(usuario)
+                .tienda(tienda)
+                .maquina(maquina)
+                .build();
+    }
+
+
+    //Mepeo EntradaRequestDTO a Entrada
+    public static Entrada toEntity(EntradaRequestDTO e, Usuario encargado){
+        if (e == null) return null;
+
+        return Entrada.builder()
+                .cantidad(e.getCantidad())
+                .costo(e.getCosto())
+                .descripcion(e.getDescripcion())
+                .encargado(encargado)
+                .build();
     }
 }
