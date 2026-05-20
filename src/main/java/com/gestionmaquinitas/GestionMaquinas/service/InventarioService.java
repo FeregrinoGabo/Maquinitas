@@ -1,6 +1,9 @@
 package com.gestionmaquinitas.GestionMaquinas.service;
 
 import com.gestionmaquinitas.GestionMaquinas.dto.response.InventarioDTO;
+import com.gestionmaquinitas.GestionMaquinas.mapper.MapperDTO;
+import com.gestionmaquinitas.GestionMaquinas.repository.InventarioRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -8,14 +11,17 @@ import java.util.List;
 @Service
 public class InventarioService implements IINventarioService{
 
+    @Autowired
+    InventarioRepository inventarioRepository;
+
     @Override
     public List<InventarioDTO> getInventario() {
-        return List.of();
+        return inventarioRepository.findAll().stream().map(MapperDTO::toDTO).toList();
     }
 
     @Override
     public InventarioDTO getOneInventario(Long id) {
-        return null;
+        return inventarioRepository.findById(id).map(MapperDTO::toDTO).orElse(null);
     }
 
     @Override

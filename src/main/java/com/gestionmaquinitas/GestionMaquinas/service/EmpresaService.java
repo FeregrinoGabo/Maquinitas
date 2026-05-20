@@ -1,6 +1,9 @@
 package com.gestionmaquinitas.GestionMaquinas.service;
 
 import com.gestionmaquinitas.GestionMaquinas.dto.response.EmpresaDTO;
+import com.gestionmaquinitas.GestionMaquinas.mapper.MapperDTO;
+import com.gestionmaquinitas.GestionMaquinas.repository.EmpresaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -8,9 +11,12 @@ import java.util.List;
 @Service
 public class EmpresaService implements IEmpresaService{
 
+    @Autowired
+    EmpresaRepository empresaRepository;
+
     @Override
     public List<EmpresaDTO> getEmpresa() {
-        return List.of();
+        return empresaRepository.findAll().stream().map(MapperDTO::toDTO).toList();
     }
 
     @Override
