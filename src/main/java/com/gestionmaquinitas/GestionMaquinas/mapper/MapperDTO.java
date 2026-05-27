@@ -2,7 +2,10 @@ package com.gestionmaquinitas.GestionMaquinas.mapper;
 
 import com.gestionmaquinitas.GestionMaquinas.dto.response.*;
 import com.gestionmaquinitas.GestionMaquinas.model.*;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class MapperDTO {
 
     //Mapeo Corte a CorteDTO
@@ -124,7 +127,7 @@ public class MapperDTO {
                 .costo(e.getCosto())
                 .descripcion(e.getDescripcion())
                 .fechaLlegada(e.getFechaLlegada())
-                .idEncargado(e.getEncargado().getId())
+                .idEncargado(e.getEncargado().getId() != null ? e.getEncargado().getId() : null)
                 .build();
     }
 }

@@ -2,6 +2,7 @@ package com.gestionmaquinitas.GestionMaquinas.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -23,6 +24,9 @@ public class Tienda {
     private String municipio;
     private String colonia;
     private Integer porcentajeBase;
+
+    @CreationTimestamp
+    @Column(updatable = false)
     private LocalDateTime fechaCreacion;
     private LocalDateTime fechaRetiro;
 

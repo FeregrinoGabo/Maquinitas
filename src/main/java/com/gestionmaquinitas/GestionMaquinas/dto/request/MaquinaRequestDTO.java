@@ -22,4 +22,7 @@ public class MaquinaRequestDTO {
     private EstadoMaquina estado;
     @Size(max = 100, message = "La descripción no puede superar los 100 caracteres")
     private String descripcion;
+    @NotBlank(message = "El id de la empresa no puede quedar en vacio")
+    private Long empresaId;
+
 }

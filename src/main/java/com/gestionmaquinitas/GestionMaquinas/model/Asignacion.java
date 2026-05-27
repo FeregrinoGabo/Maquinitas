@@ -2,6 +2,7 @@ package com.gestionmaquinitas.GestionMaquinas.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -15,6 +16,7 @@ public class Asignacion {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @CreationTimestamp
     private LocalDateTime fechaAsignacion;
     private LocalDateTime fechaRetiro;
 

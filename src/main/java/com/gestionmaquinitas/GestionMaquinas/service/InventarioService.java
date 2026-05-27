@@ -1,7 +1,11 @@
 package com.gestionmaquinitas.GestionMaquinas.service;
 
+import com.gestionmaquinitas.GestionMaquinas.dto.request.InventarioRequestDTO;
 import com.gestionmaquinitas.GestionMaquinas.dto.response.InventarioDTO;
 import com.gestionmaquinitas.GestionMaquinas.mapper.MapperDTO;
+import com.gestionmaquinitas.GestionMaquinas.mapper.MapperEntity;
+import com.gestionmaquinitas.GestionMaquinas.model.Empresa;
+import com.gestionmaquinitas.GestionMaquinas.model.Inventario;
 import com.gestionmaquinitas.GestionMaquinas.repository.InventarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +17,8 @@ public class InventarioService implements IINventarioService{
 
     @Autowired
     InventarioRepository inventarioRepository;
+    @Autowired
+    EmpresaService empresaService;
 
     @Override
     public List<InventarioDTO> getInventario() {
@@ -25,17 +31,29 @@ public class InventarioService implements IINventarioService{
     }
 
     @Override
-    public InventarioDTO createInventario(InventarioDTO inventarioDTO) {
-        return null;
+    public Inventario getOneInventarioEntity(Long id){
+        return inventarioRepository.findById(id).orElseThrow(() -> new RuntimeException("Inventario con id: " + id +
+                " no se ha encontrado"));
     }
 
     @Override
-    public InventarioDTO updateInventario(Long id, InventarioDTO inventarioDTO) {
+    public InventarioDTO createInventario(InventarioRequestDTO inventarioRequestDTO) {
+        Empresa empresa = empresaService.getOneEmpresaEntity(inventarioRequestDTO.getEmpresaId());
+
+        Inventario inventario = MapperEntity.toEntity(inventarioRequestDTO);
+        inventario.setEmpresa(empresa);
+
+        Inventario inventarioGuardado = inventarioRepository.save(inventario);
+        return MapperDTO.toDTO(inventarioGuardado);
+    }
+
+    @Override
+    public InventarioDTO updateInventario(Long id, InventarioRequestDTO inventarioRequestDTO) {
         return null;
     }
 
     @Override
     public void deleteInventario(Long id) {
-
+        inventarioRepository.deleteById(id);
     }
 }

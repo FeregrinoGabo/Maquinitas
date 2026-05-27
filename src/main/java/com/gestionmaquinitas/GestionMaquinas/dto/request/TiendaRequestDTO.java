@@ -22,4 +22,6 @@ public class TiendaRequestDTO {
     private String colonia;
     @NotNull(message = "El campo porcentaje pactado no debe quedar vacio")
     private Integer porcentajeBase;
+    @NotBlank(message = "No puede quedar vavio el campo de Empresa id")
+    private Long empresaId;
 }

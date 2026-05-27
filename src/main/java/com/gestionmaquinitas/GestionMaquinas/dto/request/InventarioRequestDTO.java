@@ -14,4 +14,6 @@ public class InventarioRequestDTO {
     @Size(min = 3, max = 32, message = "El nombre del inventario debe tener entre 3 y 32 caracteres")
     private String nombre;
     private Integer stock;
+    @NotBlank(message = "El inventario ID no puede quedar vacio")
+    private Long empresaId;
 }

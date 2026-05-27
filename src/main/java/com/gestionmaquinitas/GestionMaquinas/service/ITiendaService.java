@@ -1,6 +1,8 @@
 package com.gestionmaquinitas.GestionMaquinas.service;
 
+import com.gestionmaquinitas.GestionMaquinas.dto.request.TiendaRequestDTO;
 import com.gestionmaquinitas.GestionMaquinas.dto.response.TiendaDTO;
+import com.gestionmaquinitas.GestionMaquinas.model.Tienda;
 
 import java.util.List;
 
@@ -10,10 +12,12 @@ public interface ITiendaService {
 
     //Lectura
     List<TiendaDTO> getTiendas();
+    TiendaDTO getOneTienda (Long id);
+    Tienda getOneTiendaEntity (Long id);
     //Crear
-    TiendaDTO createTienda(TiendaDTO tiendaDTO);
+    TiendaDTO createTienda(TiendaRequestDTO tiendaRequestDTO);
     //Actualizar
-    TiendaDTO updateTienda(Long id, TiendaDTO tiendaDTO);
+    TiendaDTO updateTienda(Long id, TiendaRequestDTO tiendaRequestDTO);
     //Eliminar
     void deleteTienda(Long id);
 }

@@ -9,17 +9,14 @@ import lombok.NoArgsConstructor;
 public class MapperEntity {
 
     //Mapeo CorteRequestDTO a Corte
-    public static Corte toEntity(CorteRequestDTO c, Usuario usuario, Asignacion asignacion){
+    public static Corte toEntity(CorteRequestDTO c){
         if (c == null) return null;
 
         return Corte.builder()
                 .dineroRecolectado(c.getDineroRecolectado())
-                .fechaCorte(c.getFechaCorte())
                 .peluchesRestantes(c.getPeluchesRestantes())
                 .porcentajePactado(c.getPorcentajePactado())
                 .recargaPeluches(c.getRecargaPeluches())
-                .usuario(usuario)
-                .asignacion(asignacion)
                 .build();
     } 
 
@@ -88,11 +85,11 @@ public class MapperEntity {
 
 
     //Mapeo AsignacionRequestDTO a Asignacion
+    // Este mapeo no es tan necesario, porque so lo piensas bien, puse solo entidades, y claro para maperarlo, pues un poco duro, no?
     public static Asignacion toEntity(AsignacionRequestDTO a, Usuario usuario, Tienda tienda, Maquina maquina){
         if (a == null) return null;
 
         return Asignacion.builder()
-                .fechaAsignacion(a.getFechaAsignacion())
                 .usuario(usuario)
                 .tienda(tienda)
                 .maquina(maquina)
@@ -101,14 +98,13 @@ public class MapperEntity {
 
 
     //Mepeo EntradaRequestDTO a Entrada
-    public static Entrada toEntity(EntradaRequestDTO e, Usuario encargado){
+    public static Entrada toEntity(EntradaRequestDTO e){
         if (e == null) return null;
 
         return Entrada.builder()
                 .cantidad(e.getCantidad())
                 .costo(e.getCosto())
                 .descripcion(e.getDescripcion())
-                .encargado(encargado)
                 .build();
     }
 }

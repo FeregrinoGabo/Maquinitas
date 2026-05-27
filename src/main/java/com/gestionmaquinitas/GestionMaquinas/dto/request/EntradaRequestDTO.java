@@ -1,5 +1,6 @@
 package com.gestionmaquinitas.GestionMaquinas.dto.request;
 
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
@@ -18,6 +19,8 @@ public class EntradaRequestDTO {
     private BigDecimal costo;
     @Size(max = 256, message = "El mensaje es muy largo. Tamaño maximo: 256 caracteres")
     private String descripcion;
-    //Este campo se puede tener automaticamente de la sesion del usuario que efectue la operacion?
+    //Este campo se puede tener automaticamente de la sesion del usuario que efectue la operacion
     private Long idEncargado;
+    @NotBlank(message = "este campo no puede estar vacio")
+    private Long idInventario;
 }

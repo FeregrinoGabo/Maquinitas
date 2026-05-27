@@ -11,8 +11,6 @@ import java.time.LocalDateTime;
 @Builder
 public class AsignacionRequestDTO {
 
-    @NotNull(message = "No posible dejar vacia la fecha de asignacion")
-    private LocalDateTime fechaAsignacion;
     @NotNull(message = "No posible dejar vacio el Usuario")
     private Long idUsuario;
     @NotNull(message = "No posible dejar vacia la Tienda")

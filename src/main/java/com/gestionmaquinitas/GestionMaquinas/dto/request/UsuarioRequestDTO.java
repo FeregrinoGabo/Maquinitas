@@ -2,6 +2,7 @@ package com.gestionmaquinitas.GestionMaquinas.dto.request;
 
 import com.gestionmaquinitas.GestionMaquinas.model.RolUsuario;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
@@ -24,4 +25,6 @@ public class UsuarioRequestDTO {
     private String contrasena;
     @NotBlank(message = "El rol no puede quedar vacio")
     private RolUsuario rol;
+    @NotBlank (message = "Debes colocar un ID de la empresa")
+    private Long empresaId;
 }

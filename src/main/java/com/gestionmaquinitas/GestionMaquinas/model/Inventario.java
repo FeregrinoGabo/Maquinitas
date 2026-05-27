@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Getter @Setter
@@ -26,4 +27,7 @@ public class Inventario {
     @JoinColumn(name = "empresa_id", nullable = false)
     @ToString.Exclude
     private Empresa empresa;
+
+    @OneToMany(mappedBy = "inventario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Entrada> entradas;
 }
