@@ -2,6 +2,7 @@ package com.gestionmaquinitas.GestionMaquinas.service;
 
 import com.gestionmaquinitas.GestionMaquinas.dto.request.InventarioRequestDTO;
 import com.gestionmaquinitas.GestionMaquinas.dto.response.InventarioDTO;
+import com.gestionmaquinitas.GestionMaquinas.exception.NotFoundException;
 import com.gestionmaquinitas.GestionMaquinas.mapper.MapperDTO;
 import com.gestionmaquinitas.GestionMaquinas.mapper.MapperEntity;
 import com.gestionmaquinitas.GestionMaquinas.model.Empresa;
@@ -27,12 +28,14 @@ public class InventarioService implements IINventarioService{
 
     @Override
     public InventarioDTO getOneInventario(Long id) {
-        return inventarioRepository.findById(id).map(MapperDTO::toDTO).orElse(null);
+        return inventarioRepository.findById(id).map(MapperDTO::toDTO).orElseThrow(() -> new NotFoundException(
+                "No se ha encontrado el inventario con el id: " + id
+        ));
     }
 
     @Override
     public Inventario getOneInventarioEntity(Long id){
-        return inventarioRepository.findById(id).orElseThrow(() -> new RuntimeException("Inventario con id: " + id +
+        return inventarioRepository.findById(id).orElseThrow(() -> new NotFoundException("Inventario con id: " + id +
                 " no se ha encontrado"));
     }
 

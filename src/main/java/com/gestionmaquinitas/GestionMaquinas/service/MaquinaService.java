@@ -2,6 +2,7 @@ package com.gestionmaquinitas.GestionMaquinas.service;
 
 import com.gestionmaquinitas.GestionMaquinas.dto.request.MaquinaRequestDTO;
 import com.gestionmaquinitas.GestionMaquinas.dto.response.MaquinaDTO;
+import com.gestionmaquinitas.GestionMaquinas.exception.NotFoundException;
 import com.gestionmaquinitas.GestionMaquinas.mapper.MapperDTO;
 import com.gestionmaquinitas.GestionMaquinas.mapper.MapperEntity;
 import com.gestionmaquinitas.GestionMaquinas.model.Empresa;
@@ -28,12 +29,14 @@ public class MaquinaService implements IMaquinaService{
 
     @Override
     public MaquinaDTO getOneMaquina (Long id){
-        return maquinaRepository.findById(id).map(MapperDTO::toDTO).orElse(null);
+        return maquinaRepository.findById(id).map(MapperDTO::toDTO).orElseThrow(() -> new NotFoundException(
+                "No se ha encontrado la maquina con el id: " + id
+        ));
     }
 
     @Override
     public Maquina getOneMaquinaEntity(Long id){
-        return maquinaRepository.findById(id).orElseThrow(() -> new RuntimeException("Maquina con el id: " + id +
+        return maquinaRepository.findById(id).orElseThrow(() -> new NotFoundException("Maquina con el id: " + id +
                 " no se ha encontrado"));
     }
 

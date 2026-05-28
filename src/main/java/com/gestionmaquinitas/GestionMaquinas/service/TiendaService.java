@@ -2,6 +2,7 @@ package com.gestionmaquinitas.GestionMaquinas.service;
 
 import com.gestionmaquinitas.GestionMaquinas.dto.request.TiendaRequestDTO;
 import com.gestionmaquinitas.GestionMaquinas.dto.response.TiendaDTO;
+import com.gestionmaquinitas.GestionMaquinas.exception.NotFoundException;
 import com.gestionmaquinitas.GestionMaquinas.mapper.MapperDTO;
 import com.gestionmaquinitas.GestionMaquinas.mapper.MapperEntity;
 import com.gestionmaquinitas.GestionMaquinas.model.Empresa;
@@ -27,12 +28,14 @@ public class TiendaService implements ITiendaService{
 
     @Override
     public TiendaDTO getOneTienda(Long id) {
-        return tiendaRepository.findById(id).map(MapperDTO::toDTO).orElse(null);
+        return tiendaRepository.findById(id).map(MapperDTO::toDTO).orElseThrow(() -> new NotFoundException(
+                "No se a encontrado la tienda con el id: " + id
+        ));
     }
 
     @Override
     public Tienda getOneTiendaEntity(Long id){
-        return tiendaRepository.findById(id).orElseThrow(() -> new RuntimeException("La tienda con el id: " + id +
+        return tiendaRepository.findById(id).orElseThrow(() -> new NotFoundException("La tienda con el id: " + id +
                 " no se ha encontrado"));
     }
 

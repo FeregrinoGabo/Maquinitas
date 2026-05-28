@@ -2,6 +2,7 @@ package com.gestionmaquinitas.GestionMaquinas.service;
 
 import com.gestionmaquinitas.GestionMaquinas.dto.request.EmpresaRequestDTO;
 import com.gestionmaquinitas.GestionMaquinas.dto.response.EmpresaDTO;
+import com.gestionmaquinitas.GestionMaquinas.exception.NotFoundException;
 import com.gestionmaquinitas.GestionMaquinas.mapper.MapperDTO;
 import com.gestionmaquinitas.GestionMaquinas.mapper.MapperEntity;
 import com.gestionmaquinitas.GestionMaquinas.model.Empresa;
@@ -24,13 +25,15 @@ public class EmpresaService implements IEmpresaService{
 
     @Override
     public Empresa getOneEmpresaEntity (Long id) {
-        return empresaRepository.findById(id).orElseThrow(() -> new RuntimeException("Empresa no " +
+        return empresaRepository.findById(id).orElseThrow(() -> new NotFoundException("Empresa no " +
                 "encontrada con id: " + id));
     }
 
     @Override
     public EmpresaDTO getEmpresaById (Long id){
-        return empresaRepository.findById(id).map(MapperDTO::toDTO).orElse(null);
+        return empresaRepository.findById(id).map(MapperDTO::toDTO).orElseThrow(() -> new NotFoundException(
+                "No se ha encontrado la empresa con el id: " + id
+        ));
     }
 
     @Override

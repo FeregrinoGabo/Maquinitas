@@ -3,6 +3,7 @@ package com.gestionmaquinitas.GestionMaquinas.service;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.gestionmaquinitas.GestionMaquinas.dto.request.CorteRequestDTO;
 import com.gestionmaquinitas.GestionMaquinas.dto.response.CorteDTO;
+import com.gestionmaquinitas.GestionMaquinas.exception.NotFoundException;
 import com.gestionmaquinitas.GestionMaquinas.mapper.MapperDTO;
 import com.gestionmaquinitas.GestionMaquinas.mapper.MapperEntity;
 import com.gestionmaquinitas.GestionMaquinas.model.Asignacion;
@@ -24,7 +25,9 @@ public class CorteService implements ICorteService{
 
     @Override
     public CorteDTO getOneCorte(Long id) {
-        return corteRepository.findById(id).map(MapperDTO::toDTO).orElse(null);
+        return corteRepository.findById(id).map(MapperDTO::toDTO).orElseThrow(() -> new NotFoundException(
+                "No se ha encontrado el corte con el id: " + id
+        ));
     }
 
     @Override

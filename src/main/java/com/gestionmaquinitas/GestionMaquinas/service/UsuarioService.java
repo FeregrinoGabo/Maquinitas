@@ -2,6 +2,7 @@ package com.gestionmaquinitas.GestionMaquinas.service;
 
 import com.gestionmaquinitas.GestionMaquinas.dto.request.UsuarioRequestDTO;
 import com.gestionmaquinitas.GestionMaquinas.dto.response.UsuarioDTO;
+import com.gestionmaquinitas.GestionMaquinas.exception.NotFoundException;
 import com.gestionmaquinitas.GestionMaquinas.mapper.MapperDTO;
 import com.gestionmaquinitas.GestionMaquinas.mapper.MapperEntity;
 import com.gestionmaquinitas.GestionMaquinas.model.Empresa;
@@ -30,12 +31,14 @@ public class UsuarioService implements IUsuarioService{
 
     @Override
     public UsuarioDTO getOneUsuario(Long id){
-        return usuarioRepository.findById(id).map(MapperDTO::toDTO).orElse(null);
+        return usuarioRepository.findById(id).map(MapperDTO::toDTO).orElseThrow(() -> new NotFoundException(
+                "No se ha encontrado el usuario con el id: " + id
+        ));
     }
 
     @Override
     public Usuario getOneUsuarioEntity (Long id){
-        return usuarioRepository.findById(id).orElseThrow(() -> new RuntimeException("El usuario con el ID: " +
+        return usuarioRepository.findById(id).orElseThrow(() -> new NotFoundException("El usuario con el ID: " +
                 id + " no fue encontrado"));
     }
 

@@ -2,6 +2,7 @@ package com.gestionmaquinitas.GestionMaquinas.service;
 
 import com.gestionmaquinitas.GestionMaquinas.dto.request.AsignacionRequestDTO;
 import com.gestionmaquinitas.GestionMaquinas.dto.response.AsignacionDTO;
+import com.gestionmaquinitas.GestionMaquinas.exception.NotFoundException;
 import com.gestionmaquinitas.GestionMaquinas.mapper.MapperDTO;
 import com.gestionmaquinitas.GestionMaquinas.model.Asignacion;
 import com.gestionmaquinitas.GestionMaquinas.model.Maquina;
@@ -32,12 +33,14 @@ public class AsignacionService implements IAsignacionService{
 
     @Override
     public AsignacionDTO getOneAsignacion(Long id) {
-        return asignacionRepository.findById(id).map(MapperDTO::toDTO).orElse(null);
+        return asignacionRepository.findById(id).map(MapperDTO::toDTO).orElseThrow(() -> new NotFoundException(
+                "La asignacion con el id: " + id + " no se ha encontrado"
+        ));
     }
 
     @Override
     public Asignacion getOneAsignacionEntity(Long id) {
-        return asignacionRepository.findById(id).orElseThrow(() -> new RuntimeException("La asignacion con ID: " + id +
+        return asignacionRepository.findById(id).orElseThrow(() -> new NotFoundException("La asignacion con ID: " + id +
                 " no se ha encontrado"));
     }
 

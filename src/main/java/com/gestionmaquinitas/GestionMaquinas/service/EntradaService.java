@@ -2,6 +2,7 @@ package com.gestionmaquinitas.GestionMaquinas.service;
 
 import com.gestionmaquinitas.GestionMaquinas.dto.request.EntradaRequestDTO;
 import com.gestionmaquinitas.GestionMaquinas.dto.response.EntradaDTO;
+import com.gestionmaquinitas.GestionMaquinas.exception.NotFoundException;
 import com.gestionmaquinitas.GestionMaquinas.mapper.MapperDTO;
 import com.gestionmaquinitas.GestionMaquinas.mapper.MapperEntity;
 import com.gestionmaquinitas.GestionMaquinas.model.Entrada;
@@ -34,7 +35,9 @@ public class EntradaService implements IEntradaService{
 
     @Override
     public EntradaDTO getOneEntrada(Long id) {
-        return entradaRepository.findById(id).map(MapperDTO::toDTO).orElse(null);
+        return entradaRepository.findById(id).map(MapperDTO::toDTO).orElseThrow(() -> new NotFoundException(
+                "No se ha encontrado la entrada con el id: " + id
+        ));
     }
 
     @Override
