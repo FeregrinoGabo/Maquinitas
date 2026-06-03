@@ -63,7 +63,15 @@ public class AsignacionService implements IAsignacionService{
 
     @Override
     public AsignacionDTO updateAsignacion(AsignacionRequestDTO asignacionRequestDTO, Long id) {
-        return null;
+        Asignacion asignacion = asignacionRepository.findById(id).orElseThrow(() -> new NotFoundException(
+                "No se ha encontrado la asignacion. Asignacion con ID: " + id
+        ));
+
+        asignacion.setUsuario(usuarioService.getOneUsuarioEntity(asignacionRequestDTO.getIdUsuario()));
+        asignacion.setTienda(tiendaService.getOneTiendaEntity(asignacionRequestDTO.getIdTienda()));
+        asignacion.setMaquina(maquinaService.getOneMaquinaEntity(asignacionRequestDTO.getIdMaquina()));
+
+        return MapperDTO.toDTO(asignacionRepository.save(asignacion));
     }
 
     @Override

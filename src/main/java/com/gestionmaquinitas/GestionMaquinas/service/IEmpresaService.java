@@ -13,6 +13,6 @@ public interface IEmpresaService {
     EmpresaDTO getEmpresaById (Long id);
     Empresa getOneEmpresaEntity (Long id);
     EmpresaDTO createEmpresa(EmpresaRequestDTO empresaDTO);
-    EmpresaDTO updateEmpresa(Long id, EmpresaDTO empresaDTO);
+    EmpresaDTO updateEmpresa(Long id, EmpresaRequestDTO empresaRequestDTO);
     void deleteEmpresa(Long id);
 }

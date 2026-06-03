@@ -46,7 +46,18 @@ public class CorteService implements ICorteService{
 
     @Override
     public CorteDTO updateCorte(Long id, CorteRequestDTO corteRequestDTO) {
-        return null;
+        Corte corte = corteRepository.findById(id).orElseThrow(() -> new NotFoundException(
+                "No se encontro el corte. Corte con ID: " + id
+        ));
+
+        corte.setDineroRecolectado(corteRequestDTO.getDineroRecolectado());
+        corte.setPeluchesRestantes(corteRequestDTO.getPeluchesRestantes());
+        corte.setPorcentajePactado(corteRequestDTO.getPorcentajePactado());
+        corte.setRecargaPeluches(corteRequestDTO.getRecargaPeluches());
+        corte.setUsuario(usuarioService.getOneUsuarioEntity(corteRequestDTO.getIdUsuario()));
+        corte.setAsignacion(asignacionService.getOneAsignacionEntity(corteRequestDTO.getIdAsignacion()));
+
+        return MapperDTO.toDTO(corteRepository.save(corte));
     }
 
     @Override

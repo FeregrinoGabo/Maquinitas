@@ -46,8 +46,14 @@ public class EmpresaService implements IEmpresaService{
     }
 
     @Override
-    public EmpresaDTO updateEmpresa(Long id, EmpresaDTO empresaDTO) {
-        return null;
+    public EmpresaDTO updateEmpresa(Long id, EmpresaRequestDTO empresaRequestDTO) {
+        Empresa empresa = empresaRepository.findById(id).orElseThrow(() -> new NotFoundException(
+                "No se encontro la empresa. Empresa con ID: " + id
+        ));
+
+        empresa.setNombre(empresaRequestDTO.getNombre());
+
+        return MapperDTO.toDTO(empresaRepository.save(empresa));
     }
 
     @Override

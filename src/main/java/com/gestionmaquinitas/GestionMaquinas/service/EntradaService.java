@@ -11,12 +11,14 @@ import com.gestionmaquinitas.GestionMaquinas.model.Usuario;
 import com.gestionmaquinitas.GestionMaquinas.repository.EntradaRepository;
 import com.gestionmaquinitas.GestionMaquinas.repository.InventarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
 import java.util.List;
 
+@Service
 public class EntradaService implements IEntradaService{
 
     @Autowired
@@ -76,7 +78,17 @@ public class EntradaService implements IEntradaService{
 
     @Override
     public EntradaDTO updateEntrada(Long id, EntradaRequestDTO entradaRequestDTO) {
-        return null;
+        Entrada entrada = entradaRepository.findById(id).orElseThrow(() -> new NotFoundException(
+                "No se ha encontrado la entrada. Entrada con ID: " + id
+        ));
+
+        entrada.setCantidad(entradaRequestDTO.getCantidad());
+        entrada.setCosto(entradaRequestDTO.getCosto());
+        entrada.setDescripcion(entradaRequestDTO.getDescripcion());
+        entrada.setEncargado(usuarioService.getOneUsuarioEntity(entradaRequestDTO.getIdEncargado()));
+        entrada.setInventario(inventarioService.getOneInventarioEntity(entradaRequestDTO.getIdInventario()));
+
+        return MapperDTO.toDTO(entradaRepository.save(entrada));
     }
 
     @Override

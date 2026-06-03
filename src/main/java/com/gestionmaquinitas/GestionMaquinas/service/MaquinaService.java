@@ -54,7 +54,17 @@ public class MaquinaService implements IMaquinaService{
 
     @Override
     public MaquinaDTO updateMaquina(Long id, MaquinaRequestDTO maquinaRequestDTO) {
-        return null;
+        Maquina maquina = maquinaRepository.findById(id).orElseThrow(() -> new NotFoundException(
+                "No se ha encontrado la maquina. Maquina con id: " + id
+        ));
+
+        maquina.setColor(maquinaRequestDTO.getColor());
+        maquina.setCapacidad(maquinaRequestDTO.getCapacidad());
+        maquina.setEstado(maquinaRequestDTO.getEstado());
+        maquina.setDescripcion(maquinaRequestDTO.getDescripcion());
+        maquina.setEmpresa(empresaService.getOneEmpresaEntity(maquinaRequestDTO.getEmpresaId()));
+
+        return MapperDTO.toDTO(maquinaRepository.save(maquina));
     }
 
     @Override

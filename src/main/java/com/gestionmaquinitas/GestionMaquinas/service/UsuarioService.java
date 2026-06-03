@@ -57,7 +57,17 @@ public class UsuarioService implements IUsuarioService{
 
     @Override
     public UsuarioDTO updateUsuario(Long id, UsuarioRequestDTO usuarioRequestDTO) {
-        return null;
+        Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new NotFoundException("El usuario que se " +
+                "desea actualizar no se encuentra. Usuario con id: " + id));
+
+        usuario.setNombre(usuarioRequestDTO.getNombre());
+        usuario.setApellidoMaterno(usuarioRequestDTO.getApellidoMaterno());
+        usuario.setApellidoPaterno(usuarioRequestDTO.getApellidoPaterno());
+        usuario.setUsername(usuarioRequestDTO.getUsername());
+        usuario.setRol(usuarioRequestDTO.getRol());
+        usuario.setEmpresa(empresaService.getOneEmpresaEntity(usuarioRequestDTO.getEmpresaId()));
+
+        return MapperDTO.toDTO(usuarioRepository.save(usuario));
     }
 
     @Override

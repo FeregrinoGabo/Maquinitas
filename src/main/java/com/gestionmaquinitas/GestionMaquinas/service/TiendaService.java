@@ -53,7 +53,19 @@ public class TiendaService implements ITiendaService{
 
     @Override
     public TiendaDTO updateTienda(Long id, TiendaRequestDTO tiendaRequestDTO) {
-        return null;
+        Tienda tienda = tiendaRepository.findById(id).orElseThrow(() -> new NotFoundException(
+                "No se ha encontrado la tienda a actualizar. Tienda con ID: " + id
+        ));
+
+        tienda.setNombre(tiendaRequestDTO.getNombre());
+        tienda.setPais(tiendaRequestDTO.getPais());
+        tienda.setEstado(tiendaRequestDTO.getEstado());
+        tienda.setMunicipio(tiendaRequestDTO.getMunicipio());
+        tienda.setColonia(tiendaRequestDTO.getColonia());
+        tienda.setPorcentajeBase(tiendaRequestDTO.getPorcentajeBase());
+        tienda.setEmpresa(empresaService.getOneEmpresaEntity(tiendaRequestDTO.getEmpresaId()));
+
+        return MapperDTO.toDTO(tiendaRepository.save(tienda));
     }
 
     @Override

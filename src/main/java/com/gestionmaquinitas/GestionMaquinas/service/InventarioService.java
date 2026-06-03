@@ -52,7 +52,15 @@ public class InventarioService implements IINventarioService{
 
     @Override
     public InventarioDTO updateInventario(Long id, InventarioRequestDTO inventarioRequestDTO) {
-        return null;
+        Inventario inventario = inventarioRepository.findById(id).orElseThrow(() -> new NotFoundException(
+                "El inventario no se ha encontrado. Inventario con id: " + id
+        ));
+
+        inventario.setNombre(inventarioRequestDTO.getNombre());
+        inventario.setStock(inventarioRequestDTO.getStock());
+        inventario.setEmpresa(empresaService.getOneEmpresaEntity(inventarioRequestDTO.getEmpresaId()));
+
+        return MapperDTO.toDTO(inventarioRepository.save(inventario));
     }
 
     @Override
