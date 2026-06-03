@@ -10,6 +10,8 @@ import com.gestionmaquinitas.GestionMaquinas.model.RolUsuario;
 import com.gestionmaquinitas.GestionMaquinas.model.Usuario;
 import com.gestionmaquinitas.GestionMaquinas.repository.EmpresaRepository;
 import com.gestionmaquinitas.GestionMaquinas.repository.UsuarioRepository;
+import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,12 +19,11 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class UsuarioService implements IUsuarioService{
 
-    @Autowired
-    private UsuarioRepository usuarioRepository;
-    @Autowired
-    private EmpresaService empresaService;
+    private final UsuarioRepository usuarioRepository;
+    private final EmpresaService empresaService;
 
     @Override
     public List<UsuarioDTO> getUsuario() {
@@ -43,6 +44,7 @@ public class UsuarioService implements IUsuarioService{
     }
 
     @Override
+    @Transactional
     public UsuarioDTO createUsuario(UsuarioRequestDTO usuarioRequestDTO) {
         Empresa empresa = empresaService.getOneEmpresaEntity(usuarioRequestDTO.getEmpresaId());
 
@@ -56,6 +58,7 @@ public class UsuarioService implements IUsuarioService{
     }
 
     @Override
+    @Transactional
     public UsuarioDTO updateUsuario(Long id, UsuarioRequestDTO usuarioRequestDTO) {
         Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new NotFoundException("El usuario que se " +
                 "desea actualizar no se encuentra. Usuario con id: " + id));
@@ -71,6 +74,7 @@ public class UsuarioService implements IUsuarioService{
     }
 
     @Override
+    @Transactional
     public void deleteUsuario(Long id) {
         usuarioRepository.deleteById(id);
     }

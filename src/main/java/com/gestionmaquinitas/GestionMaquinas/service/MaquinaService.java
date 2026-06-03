@@ -8,19 +8,19 @@ import com.gestionmaquinitas.GestionMaquinas.mapper.MapperEntity;
 import com.gestionmaquinitas.GestionMaquinas.model.Empresa;
 import com.gestionmaquinitas.GestionMaquinas.model.Maquina;
 import com.gestionmaquinitas.GestionMaquinas.repository.MaquinaRepository;
+import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class MaquinaService implements IMaquinaService{
 
-    @Autowired
-    MaquinaRepository maquinaRepository;
-
-    @Autowired
-    EmpresaService empresaService;
+    private final MaquinaRepository maquinaRepository;
+    private final EmpresaService empresaService;
 
     @Override
     public List<MaquinaDTO> getMaquina() {
@@ -41,6 +41,7 @@ public class MaquinaService implements IMaquinaService{
     }
 
     @Override
+    @Transactional
     public MaquinaDTO createMaquina(MaquinaRequestDTO maquinaRequestDTO) {
         Empresa empresa = empresaService.getOneEmpresaEntity(maquinaRequestDTO.getEmpresaId());
 
@@ -53,6 +54,7 @@ public class MaquinaService implements IMaquinaService{
     }
 
     @Override
+    @Transactional
     public MaquinaDTO updateMaquina(Long id, MaquinaRequestDTO maquinaRequestDTO) {
         Maquina maquina = maquinaRepository.findById(id).orElseThrow(() -> new NotFoundException(
                 "No se ha encontrado la maquina. Maquina con id: " + id
@@ -68,6 +70,7 @@ public class MaquinaService implements IMaquinaService{
     }
 
     @Override
+    @Transactional
     public void deleteMaquina(Long id) {
         maquinaRepository.deleteById(id);
     }

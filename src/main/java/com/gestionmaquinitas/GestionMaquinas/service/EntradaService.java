@@ -10,6 +10,8 @@ import com.gestionmaquinitas.GestionMaquinas.model.Inventario;
 import com.gestionmaquinitas.GestionMaquinas.model.Usuario;
 import com.gestionmaquinitas.GestionMaquinas.repository.EntradaRepository;
 import com.gestionmaquinitas.GestionMaquinas.repository.InventarioRepository;
+import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,16 +21,13 @@ import java.math.RoundingMode;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class EntradaService implements IEntradaService{
 
-    @Autowired
-    EntradaRepository entradaRepository;
-    @Autowired
-    UsuarioService usuarioService;
-    @Autowired
-    InventarioRepository inventarioRepository;
-    @Autowired
-    InventarioService inventarioService;
+    private final EntradaRepository entradaRepository;
+    private final UsuarioService usuarioService;
+    private final InventarioRepository inventarioRepository;
+    private final InventarioService inventarioService;
 
     @Override
     public List<EntradaDTO> getEntrada() {
@@ -43,6 +42,7 @@ public class EntradaService implements IEntradaService{
     }
 
     @Override
+    @Transactional
     public EntradaDTO createEntrada(EntradaRequestDTO entradaRequestDTO) {
         Inventario inventario = inventarioService.getOneInventarioEntity(entradaRequestDTO.getIdInventario());
 
@@ -77,6 +77,7 @@ public class EntradaService implements IEntradaService{
     }
 
     @Override
+    @Transactional
     public EntradaDTO updateEntrada(Long id, EntradaRequestDTO entradaRequestDTO) {
         Entrada entrada = entradaRepository.findById(id).orElseThrow(() -> new NotFoundException(
                 "No se ha encontrado la entrada. Entrada con ID: " + id
@@ -92,6 +93,7 @@ public class EntradaService implements IEntradaService{
     }
 
     @Override
+    @Transactional
     public void deleteEntrada(Long id) {
         entradaRepository.deleteById(id);
     }

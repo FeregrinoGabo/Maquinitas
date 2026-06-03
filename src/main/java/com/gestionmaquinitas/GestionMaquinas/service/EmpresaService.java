@@ -7,16 +7,18 @@ import com.gestionmaquinitas.GestionMaquinas.mapper.MapperDTO;
 import com.gestionmaquinitas.GestionMaquinas.mapper.MapperEntity;
 import com.gestionmaquinitas.GestionMaquinas.model.Empresa;
 import com.gestionmaquinitas.GestionMaquinas.repository.EmpresaRepository;
+import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class EmpresaService implements IEmpresaService{
 
-    @Autowired
-    EmpresaRepository empresaRepository;
+    private final EmpresaRepository empresaRepository;
 
     @Override
     public List<EmpresaDTO> getEmpresa() {
@@ -37,6 +39,7 @@ public class EmpresaService implements IEmpresaService{
     }
 
     @Override
+    @Transactional
     public EmpresaDTO createEmpresa(EmpresaRequestDTO empresaRequestDTO) {
         Empresa empresa = MapperEntity.toEntity(empresaRequestDTO);
 
@@ -46,6 +49,7 @@ public class EmpresaService implements IEmpresaService{
     }
 
     @Override
+    @Transactional
     public EmpresaDTO updateEmpresa(Long id, EmpresaRequestDTO empresaRequestDTO) {
         Empresa empresa = empresaRepository.findById(id).orElseThrow(() -> new NotFoundException(
                 "No se encontro la empresa. Empresa con ID: " + id
@@ -57,6 +61,7 @@ public class EmpresaService implements IEmpresaService{
     }
 
     @Override
+    @Transactional
     public void deleteEmpresa(Long id) {
         empresaRepository.deleteById(id);
     }

@@ -10,18 +10,18 @@ import com.gestionmaquinitas.GestionMaquinas.model.Asignacion;
 import com.gestionmaquinitas.GestionMaquinas.model.Corte;
 import com.gestionmaquinitas.GestionMaquinas.model.Usuario;
 import com.gestionmaquinitas.GestionMaquinas.repository.CorteRepository;
+import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class CorteService implements ICorteService{
 
-    @Autowired
-    CorteRepository corteRepository;
-    @Autowired
-    UsuarioService usuarioService;
-    @Autowired
-    AsignacionService asignacionService;
+    private final CorteRepository corteRepository;
+    private final UsuarioService usuarioService;
+    private final AsignacionService asignacionService;
 
     @Override
     public CorteDTO getOneCorte(Long id) {
@@ -31,6 +31,7 @@ public class CorteService implements ICorteService{
     }
 
     @Override
+    @Transactional
     public CorteDTO createCorte(CorteRequestDTO corteRequestDTO) {
         Usuario usuario = usuarioService.getOneUsuarioEntity(corteRequestDTO.getIdUsuario());
         Asignacion asignacion = asignacionService.getOneAsignacionEntity(corteRequestDTO.getIdAsignacion());
@@ -45,6 +46,7 @@ public class CorteService implements ICorteService{
     }
 
     @Override
+    @Transactional
     public CorteDTO updateCorte(Long id, CorteRequestDTO corteRequestDTO) {
         Corte corte = corteRepository.findById(id).orElseThrow(() -> new NotFoundException(
                 "No se encontro el corte. Corte con ID: " + id
@@ -61,6 +63,7 @@ public class CorteService implements ICorteService{
     }
 
     @Override
+    @Transactional
     public void deleteCorte(Long id) {
         corteRepository.deleteById(id);
     }

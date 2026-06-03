@@ -8,18 +8,19 @@ import com.gestionmaquinitas.GestionMaquinas.mapper.MapperEntity;
 import com.gestionmaquinitas.GestionMaquinas.model.Empresa;
 import com.gestionmaquinitas.GestionMaquinas.model.Inventario;
 import com.gestionmaquinitas.GestionMaquinas.repository.InventarioRepository;
+import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class InventarioService implements IINventarioService{
 
-    @Autowired
-    InventarioRepository inventarioRepository;
-    @Autowired
-    EmpresaService empresaService;
+    private final InventarioRepository inventarioRepository;
+    private final EmpresaService empresaService;
 
     @Override
     public List<InventarioDTO> getInventario() {
@@ -40,6 +41,7 @@ public class InventarioService implements IINventarioService{
     }
 
     @Override
+    @Transactional
     public InventarioDTO createInventario(InventarioRequestDTO inventarioRequestDTO) {
         Empresa empresa = empresaService.getOneEmpresaEntity(inventarioRequestDTO.getEmpresaId());
 
@@ -51,6 +53,7 @@ public class InventarioService implements IINventarioService{
     }
 
     @Override
+    @Transactional
     public InventarioDTO updateInventario(Long id, InventarioRequestDTO inventarioRequestDTO) {
         Inventario inventario = inventarioRepository.findById(id).orElseThrow(() -> new NotFoundException(
                 "El inventario no se ha encontrado. Inventario con id: " + id
@@ -64,6 +67,7 @@ public class InventarioService implements IINventarioService{
     }
 
     @Override
+    @Transactional
     public void deleteInventario(Long id) {
         inventarioRepository.deleteById(id);
     }

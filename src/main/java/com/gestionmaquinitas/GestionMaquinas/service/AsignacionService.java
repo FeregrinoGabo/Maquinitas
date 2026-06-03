@@ -9,22 +9,21 @@ import com.gestionmaquinitas.GestionMaquinas.model.Maquina;
 import com.gestionmaquinitas.GestionMaquinas.model.Tienda;
 import com.gestionmaquinitas.GestionMaquinas.model.Usuario;
 import com.gestionmaquinitas.GestionMaquinas.repository.AsignacionRepository;
+import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class AsignacionService implements IAsignacionService{
 
-    @Autowired
-    AsignacionRepository asignacionRepository;
-    @Autowired
-    UsuarioService usuarioService;
-    @Autowired
-    TiendaService tiendaService;
-    @Autowired
-    MaquinaService maquinaService;
+    private final AsignacionRepository asignacionRepository;
+    private final UsuarioService usuarioService;
+    private final TiendaService tiendaService;
+    private final MaquinaService maquinaService;
 
     @Override
     public List<AsignacionDTO> getAsignacion() {
@@ -45,6 +44,7 @@ public class AsignacionService implements IAsignacionService{
     }
 
     @Override
+    @Transactional
     public AsignacionDTO createAsignacion(AsignacionRequestDTO asignacionRequestDTO) {
         Usuario usuario = usuarioService.getOneUsuarioEntity(asignacionRequestDTO.getIdUsuario());
         Tienda tienda = tiendaService.getOneTiendaEntity(asignacionRequestDTO.getIdTienda());
@@ -62,6 +62,7 @@ public class AsignacionService implements IAsignacionService{
     }
 
     @Override
+    @Transactional
     public AsignacionDTO updateAsignacion(AsignacionRequestDTO asignacionRequestDTO, Long id) {
         Asignacion asignacion = asignacionRepository.findById(id).orElseThrow(() -> new NotFoundException(
                 "No se ha encontrado la asignacion. Asignacion con ID: " + id
@@ -75,6 +76,7 @@ public class AsignacionService implements IAsignacionService{
     }
 
     @Override
+    @Transactional
     public void deleteAsignacion(Long id) {
         asignacionRepository.deleteById(id);
     }

@@ -8,18 +8,19 @@ import com.gestionmaquinitas.GestionMaquinas.mapper.MapperEntity;
 import com.gestionmaquinitas.GestionMaquinas.model.Empresa;
 import com.gestionmaquinitas.GestionMaquinas.model.Tienda;
 import com.gestionmaquinitas.GestionMaquinas.repository.TiendaRepository;
+import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class TiendaService implements ITiendaService{
 
-    @Autowired
-    TiendaRepository tiendaRepository;
-    @Autowired
-    EmpresaService empresaService;
+    private final TiendaRepository tiendaRepository;
+    private final EmpresaService empresaService;
 
     @Override
     public List<TiendaDTO> getTiendas() {
@@ -40,6 +41,7 @@ public class TiendaService implements ITiendaService{
     }
 
     @Override
+    @Transactional
     public TiendaDTO createTienda(TiendaRequestDTO tiendaRequestDTO) {
         Empresa empresa = empresaService.getOneEmpresaEntity(tiendaRequestDTO.getEmpresaId());
 
@@ -52,6 +54,7 @@ public class TiendaService implements ITiendaService{
     }
 
     @Override
+    @Transactional
     public TiendaDTO updateTienda(Long id, TiendaRequestDTO tiendaRequestDTO) {
         Tienda tienda = tiendaRepository.findById(id).orElseThrow(() -> new NotFoundException(
                 "No se ha encontrado la tienda a actualizar. Tienda con ID: " + id
@@ -69,6 +72,7 @@ public class TiendaService implements ITiendaService{
     }
 
     @Override
+    @Transactional
     public void deleteTienda(Long id) {
         tiendaRepository.deleteById(id);
     }
