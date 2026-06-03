@@ -69,6 +69,8 @@ public class InventarioService implements IINventarioService{
     @Override
     @Transactional
     public void deleteInventario(Long id) {
-        inventarioRepository.deleteById(id);
+        Inventario eliminarInventario = inventarioRepository.findById(id).orElseThrow(() -> new NotFoundException("No " +
+                "se ha encontrado el Inventario o no existe. Inventario con ID: " + id));
+        inventarioRepository.delete(eliminarInventario);
     }
 }

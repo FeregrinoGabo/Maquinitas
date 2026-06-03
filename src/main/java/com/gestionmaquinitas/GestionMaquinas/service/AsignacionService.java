@@ -78,6 +78,8 @@ public class AsignacionService implements IAsignacionService{
     @Override
     @Transactional
     public void deleteAsignacion(Long id) {
-        asignacionRepository.deleteById(id);
+        Asignacion eliminarAsignacion = asignacionRepository.findById(id).orElseThrow(() -> new NotFoundException(" No " +
+                "se ha encontrado la asignacion o no existe. Asignacion con ID: " + id));
+        asignacionRepository.delete(eliminarAsignacion);
     }
 }

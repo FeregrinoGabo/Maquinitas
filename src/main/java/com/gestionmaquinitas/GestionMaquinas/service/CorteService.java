@@ -65,6 +65,8 @@ public class CorteService implements ICorteService{
     @Override
     @Transactional
     public void deleteCorte(Long id) {
-        corteRepository.deleteById(id);
+        Corte elimianrCorte = corteRepository.findById(id).orElseThrow(() -> new NotFoundException("No se ha " +
+                "encontrado el corte o no existe. Corte ID: " + id));
+        corteRepository.delete(elimianrCorte);
     }
 }

@@ -63,6 +63,8 @@ public class EmpresaService implements IEmpresaService{
     @Override
     @Transactional
     public void deleteEmpresa(Long id) {
-        empresaRepository.deleteById(id);
+        Empresa eliminarEmpresa = empresaRepository.findById(id).orElseThrow(() -> new NotFoundException("La " +
+                "empresa no se ha encontrado o no existe. Empresa con ID: " + id));
+        empresaRepository.delete(eliminarEmpresa);
     }
 }

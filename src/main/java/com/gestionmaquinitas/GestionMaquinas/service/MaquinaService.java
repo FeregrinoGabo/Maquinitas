@@ -72,6 +72,8 @@ public class MaquinaService implements IMaquinaService{
     @Override
     @Transactional
     public void deleteMaquina(Long id) {
-        maquinaRepository.deleteById(id);
+        Maquina elimimarMaquina = maquinaRepository.findById(id).orElseThrow(() -> new NotFoundException("No se ha " +
+                "encontrado la maquina o no existe. Maquian ID: " +id));
+        maquinaRepository.delete(elimimarMaquina);
     }
 }

@@ -95,6 +95,8 @@ public class EntradaService implements IEntradaService{
     @Override
     @Transactional
     public void deleteEntrada(Long id) {
-        entradaRepository.deleteById(id);
+        Entrada eliminarEntrada = entradaRepository.findById(id).orElseThrow(() -> new NotFoundException("No se ha " +
+                "encontrado la entrada o no existe. Entrada con ID: " + id));
+        entradaRepository.delete(eliminarEntrada);
     }
 }

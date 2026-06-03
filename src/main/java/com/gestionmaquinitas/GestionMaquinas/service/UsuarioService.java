@@ -76,6 +76,8 @@ public class UsuarioService implements IUsuarioService{
     @Override
     @Transactional
     public void deleteUsuario(Long id) {
-        usuarioRepository.deleteById(id);
+        Usuario eliminarUsuario = usuarioRepository.findById(id).orElseThrow(() -> new NotFoundException("El usuario " +
+                "que se desea eliminar no se encuentra o no existe. Usuario con ID: " + id));
+        usuarioRepository.delete(eliminarUsuario);
     }
 }

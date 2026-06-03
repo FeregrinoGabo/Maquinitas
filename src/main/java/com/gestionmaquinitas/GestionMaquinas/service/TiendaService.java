@@ -74,6 +74,8 @@ public class TiendaService implements ITiendaService{
     @Override
     @Transactional
     public void deleteTienda(Long id) {
-        tiendaRepository.deleteById(id);
+        Tienda eliminarTienda = tiendaRepository.findById(id).orElseThrow(() -> new NotFoundException("No se ha" +
+                " encontrado la tienda o no existe. Tienda con ID: " + id));
+        tiendaRepository.delete(eliminarTienda);
     }
 }
