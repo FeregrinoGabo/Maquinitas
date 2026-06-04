@@ -8,14 +8,11 @@ import com.gestionmaquinitas.GestionMaquinas.mapper.MapperEntity;
 import com.gestionmaquinitas.GestionMaquinas.model.Empresa;
 import com.gestionmaquinitas.GestionMaquinas.model.RolUsuario;
 import com.gestionmaquinitas.GestionMaquinas.model.Usuario;
-import com.gestionmaquinitas.GestionMaquinas.repository.EmpresaRepository;
 import com.gestionmaquinitas.GestionMaquinas.repository.UsuarioRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
