@@ -32,7 +32,7 @@ public class EmpresaService implements IEmpresaService{
     }
 
     @Override
-    public EmpresaDTO getEmpresaById (Long id){
+    public EmpresaDTO getOneEmpresa (Long id){
         return empresaRepository.findById(id).map(MapperDTO::toDTO).orElseThrow(() -> new NotFoundException(
                 "No se ha encontrado la empresa con el id: " + id
         ));

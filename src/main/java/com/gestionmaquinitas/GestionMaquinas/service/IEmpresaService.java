@@ -10,7 +10,7 @@ public interface IEmpresaService {
     //No se como debe funcionar los metodos de Empresa, dado que una persona solo puede tener una,a menos
     // que se permita tener mas de una, que debe ser posible
     List<EmpresaDTO> getEmpresa();
-    EmpresaDTO getEmpresaById (Long id);
+    EmpresaDTO getOneEmpresa (Long id);
     Empresa getOneEmpresaEntity (Long id);
     EmpresaDTO createEmpresa(EmpresaRequestDTO empresaDTO);
     EmpresaDTO updateEmpresa(Long id, EmpresaRequestDTO empresaRequestDTO);
