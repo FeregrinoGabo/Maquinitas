@@ -1,5 +1,6 @@
 package com.gestionmaquinitas.GestionMaquinas.dto.response;
 
+import com.gestionmaquinitas.GestionMaquinas.model.RolUsuario;
 import lombok.*;
 
 @Getter @Setter
@@ -15,4 +16,5 @@ public class UsuarioDTO {
     private String apellidoMaterno;
 
     private String username;
+    private RolUsuario rol;
 }

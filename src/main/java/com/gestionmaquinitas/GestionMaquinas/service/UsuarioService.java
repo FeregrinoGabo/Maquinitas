@@ -64,7 +64,7 @@ public class UsuarioService implements IUsuarioService{
         usuario.setApellidoMaterno(usuarioRequestDTO.getApellidoMaterno());
         usuario.setApellidoPaterno(usuarioRequestDTO.getApellidoPaterno());
         usuario.setUsername(usuarioRequestDTO.getUsername());
-        usuario.setRol(usuarioRequestDTO.getRol());
+        usuario.setRol(RolUsuario.GENERAL);
         usuario.setEmpresa(empresaService.getOneEmpresaEntity(usuarioRequestDTO.getEmpresaId()));
 
         return MapperDTO.toDTO(usuarioRepository.save(usuario));

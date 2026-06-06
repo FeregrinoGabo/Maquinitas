@@ -15,6 +15,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class CorteService implements ICorteService{
@@ -22,6 +24,11 @@ public class CorteService implements ICorteService{
     private final CorteRepository corteRepository;
     private final UsuarioService usuarioService;
     private final AsignacionService asignacionService;
+
+    @Override
+    public List<CorteDTO> getCorte(){
+        return corteRepository.findAll().stream().map(MapperDTO::toDTO).toList();
+    }
 
     @Override
     public CorteDTO getOneCorte(Long id) {

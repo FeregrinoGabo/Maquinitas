@@ -98,6 +98,7 @@ public class MapperDTO {
                 .apellidoPaterno(u.getApellidoPaterno())
                 .apellidoMaterno(u.getApellidoMaterno())
                 .username(u.getUsername())
+                .rol(u.getRol())
                 .build();
     }
 
