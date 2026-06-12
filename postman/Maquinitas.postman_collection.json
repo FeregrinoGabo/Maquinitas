@@ -1,0 +1,1368 @@
+{
+  "info": {
+    "_postman_id": "ec143b64-78ca-46bc-9854-a8227ff263f4",
+    "name": "Maquinitas",
+    "description": "Serán (o son si es que ya las hice) pruebas del funcionamiento CRUD de mi aplicacion web con Spring Boot.\n\nPara probarlo se deebe hacer en un orden. Comenzando con Empresa, Usuario o Inventario, después Tienda, Maquina, seguido de Asignacion, Entrada y por ultimo corte. Bueno, es lo que recomiendo, pero seguro que hay mas ordenes.\n\nPara que corra correctamente hay que ordenar las carpetas por orden alfabético",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "55528676",
+    "_collection_link": "https://go.postman.co/collection/55528676-ec143b64-78ca-46bc-9854-a8227ff263f4?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "001_Empresa",
+      "item": [
+        {
+          "name": "createEmpresa",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nombre\": \"Lamborghini\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/empresas",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "empresas"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getEmpresa",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/empresas",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "empresas"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "updateEmpresa",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nombre\": \"3D maquinas\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/empresas/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "empresas",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "gerOneEmpresa",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/empresas/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "empresas",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "002_Usuario",
+      "item": [
+        {
+          "name": "createUsuario",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nombre\":\"Mario\",\r\n    \"apellidoPaterno\":\"Baltazar\",\r\n    \"apellidoMaterno\":\"Sambrano\",\r\n    \"username\":\"Basa\",\r\n    \"contrasena\":\"changoCoquetoSoy\",\r\n    \"empresaId\": 1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/usuarios",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "usuarios"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "createUsuario2",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nombre\":\"Gabriel\",\r\n    \"apellidoPaterno\":\"Feregrino\",\r\n    \"apellidoMaterno\":\"Hernández\",\r\n    \"username\":\"Gabo\",\r\n    \"contrasena\":\"changoCoquetoYoNoSoy\",\r\n    \"empresaId\": 1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/usuarios",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "usuarios"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getUsuario",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/usuarios",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "usuarios"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "updateUsuario",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nombre\":\"Kimi\",\r\n    \"apellidoPaterno\":\"Verstappen\",\r\n    \"apellidoMaterno\":\"Kumpen\",\r\n    \"username\":\"Maxi\",\r\n    \"contrasena\":\"4vecesCampeon\",\r\n    \"empresaId\": 1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/usuarios/2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "usuarios",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getOneUsuario",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/usuarios/2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "usuarios",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "003_Inventario",
+      "item": [
+        {
+          "name": "createInventario",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nombre\":\"InventarioLambo\",\r\n    \"stock\": 0,\r\n    \"empresaId\": 1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/inventarios",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "inventarios"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "createInventario2",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nombre\":\"InventarioLamboSecundario\",\r\n    \"stock\": 0,\r\n    \"empresaId\": 1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/inventarios",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "inventarios"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getInventario",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/inventarios",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "inventarios"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "updateInventario",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nombre\":\"InventarioSecundarioParaCosasExtrañas\",\r\n    \"stock\": 0,\r\n    \"empresaId\": 1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/inventarios/2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "inventarios",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getOneInventario",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/inventarios/2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "inventarios",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "004_Maquina",
+      "item": [
+        {
+          "name": "createMaquina",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"color\":\"azul\",\r\n    \"capacidad\":50,\r\n    \"estado\":\"INACTIVO\",\r\n    \"descripcion\":\"Esta al tiro\",\r\n    \"empresaId\":1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/maquinas",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "maquinas"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "createMaquina2",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"color\":\"rojo\",\r\n    \"capacidad\":50,\r\n    \"estado\":\"INACTIVO\",\r\n    \"descripcion\":\"Esta es la segunda maquina\",\r\n    \"empresaId\":1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/maquinas",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "maquinas"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "createMaquina3",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"color\":\"verde\",\r\n    \"capacidad\":50,\r\n    \"estado\":\"INACTIVO\",\r\n    \"descripcion\":\"Esta es la tercera maquina\",\r\n    \"empresaId\":1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/maquinas",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "maquinas"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getMaquinas",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nombre\": \"tienda de la esquina\",\r\n    \"pais\": \"México\",\r\n    \"estado\": \"inventado\",\r\n    \"municipio\": \"muni\",\r\n    \"colonia\": \"coloquial\",\r\n    \"porcentajeBase\": \"25\",\r\n    \"empresaId\": \"1\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/maquinas",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "maquinas"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "updateMaquina",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"color\":\"morado\",\r\n    \"capacidad\":50,\r\n    \"estado\":\"INACTIVO\",\r\n    \"descripcion\":\"Esta es la actualizacion de la tercera maquina\",\r\n    \"empresaId\":1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/maquinas/3",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "maquinas",
+                "3"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getOneMaquinas",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nombre\": \"tienda de la esquina\",\r\n    \"pais\": \"México\",\r\n    \"estado\": \"inventado\",\r\n    \"municipio\": \"muni\",\r\n    \"colonia\": \"coloquial\",\r\n    \"porcentajeBase\": \"25\",\r\n    \"empresaId\": \"1\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/maquinas/3",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "maquinas",
+                "3"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "005_Tienda",
+      "item": [
+        {
+          "name": "createTienda",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nombre\": \"Tienda ejemplar 1\",\r\n    \"pais\": \"México\",\r\n    \"estado\": \"estado1\",\r\n    \"municipio\": \"muni1\",\r\n    \"colonia\": \"coloquial1\",\r\n    \"porcentajeBase\": \"25\",\r\n    \"empresaId\": \"1\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/tiendas",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "tiendas"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "createTienda2",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nombre\": \"Tienda ejemplar 2\",\r\n    \"pais\": \"México\",\r\n    \"estado\": \"estado1\",\r\n    \"municipio\": \"muni1\",\r\n    \"colonia\": \"coloquial2\",\r\n    \"porcentajeBase\": \"25\",\r\n    \"empresaId\": \"1\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/tiendas",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "tiendas"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "createTienda3",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nombre\": \"Tienda que se eliminara\",\r\n    \"pais\": \"México\",\r\n    \"estado\": \"estado1\",\r\n    \"municipio\": \"muni1\",\r\n    \"colonia\": \"coloquial2\",\r\n    \"porcentajeBase\": \"25\",\r\n    \"empresaId\": \"1\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/tiendas",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "tiendas"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getTienda",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nombre\": \"tienda de la esquina\",\r\n    \"pais\": \"México\",\r\n    \"estado\": \"inventado\",\r\n    \"municipio\": \"muni\",\r\n    \"colonia\": \"coloquial\",\r\n    \"porcentajeBase\": \"25\",\r\n    \"empresaId\": \"1\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/tiendas",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "tiendas"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "updateTienda",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nombre\": \"tienda de la esquina\",\r\n    \"pais\": \"Cambio de pais\",\r\n    \"estado\": \"inventado\",\r\n    \"municipio\": \"muni\",\r\n    \"colonia\": \"coloquial\",\r\n    \"porcentajeBase\": \"25\",\r\n    \"empresaId\": \"1\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/tiendas/2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "tiendas",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getOneTienda",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nombre\": \"tienda de la esquina\",\r\n    \"pais\": \"México\",\r\n    \"estado\": \"inventado\",\r\n    \"municipio\": \"muni\",\r\n    \"colonia\": \"coloquial\",\r\n    \"porcentajeBase\": \"25\",\r\n    \"empresaId\": \"1\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/tiendas/2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "tiendas",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "006_Asignacion",
+      "item": [
+        {
+          "name": "createAsignacion",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"idUsuario\":1,\r\n    \"idTienda\":1,\r\n    \"idMaquina\":1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/asignaciones",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "asignaciones"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "createAsignacion2",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"idUsuario\":1,\r\n    \"idTienda\":2,\r\n    \"idMaquina\":2\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/asignaciones",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "asignaciones"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "createAsignacion3",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"idUsuario\":2,\r\n    \"idTienda\":2,\r\n    \"idMaquina\":3\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/asignaciones",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "asignaciones"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getAsignacion",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/asignaciones",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "asignaciones"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "updateAsignacion",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"idUsuario\":2,\r\n    \"idTienda\":1,\r\n    \"idMaquina\":1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/asignaciones/3",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "asignaciones",
+                "3"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getOneAsignacion",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/asignaciones/3",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "asignaciones",
+                "3"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "007_Corte",
+      "item": [
+        {
+          "name": "createCorte",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"dineroRecolectado\": 560.50,\r\n    \"peluchesRestantes\":45,\r\n    \"porcentajePactado\":30,\r\n    \"recargaPeluches\":15,\r\n    \"idUsuario\":1,\r\n    \"idAsignacion\":1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/cortes",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "cortes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "createCorte2",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"dineroRecolectado\": 560.50,\r\n    \"peluchesRestantes\":45,\r\n    \"porcentajePactado\":30,\r\n    \"recargaPeluches\":15,\r\n    \"idUsuario\":2,\r\n    \"idAsignacion\":2\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/cortes",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "cortes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getCorte",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/cortes",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "cortes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "updateCorte",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"dineroRecolectado\": 480.50,\r\n    \"peluchesRestantes\":45,\r\n    \"porcentajePactado\":30,\r\n    \"recargaPeluches\":15,\r\n    \"idUsuario\":2,\r\n    \"idAsignacion\":2\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/cortes/2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "cortes",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getOneCorte",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/cortes/2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "cortes",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "008_Entrada",
+      "item": [
+        {
+          "name": "createEntrada",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"cantidad\":120,\r\n    \"costo\":3200.50,\r\n    \"descripcion\":\"primer entrada\",\r\n    \"idEncargado\":1,\r\n    \"idInventario\":1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/entradas",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "entradas"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "createEntrada2",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"cantidad\":20,\r\n    \"costo\":40,\r\n    \"descripcion\":\"segunda entrada\",\r\n    \"idEncargado\":2,\r\n    \"idInventario\":2\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/entradas",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "entradas"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getEntrada",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/entradas",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "entradas"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "updateEntrada",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"cantidad\":40,\r\n    \"costo\":1500,\r\n    \"descripcion\":\"segunda entrada actualizada\",\r\n    \"idEncargado\":1,\r\n    \"idInventario\":2\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/entradas/2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "entradas",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getOneEntrada",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/entradas/2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "entradas",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "009_DeletesEntities",
+      "item": [
+        {
+          "name": "deleteCorte",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/cortes/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "cortes",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "deleteEntrada",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/entradas/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "entradas",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "deleteAsignacion",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/asignaciones/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "asignaciones",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "deleteTienda",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/tiendas/3",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "tiendas",
+                "3"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "deleteMaquina",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/maquinas/3",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "maquinas",
+                "3"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "deleteInventario",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/inventarios/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "inventarios",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "deleteUsuario",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/usuarios/2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "usuarios",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "deleteEmpresa",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/empresas/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "empresas",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

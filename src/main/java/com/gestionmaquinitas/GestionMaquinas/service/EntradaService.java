@@ -12,11 +12,9 @@ import com.gestionmaquinitas.GestionMaquinas.repository.EntradaRepository;
 import com.gestionmaquinitas.GestionMaquinas.repository.InventarioRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.math.RoundingMode;
 import java.util.List;
 
@@ -83,6 +81,50 @@ public class EntradaService implements IEntradaService{
                 "No se ha encontrado la entrada. Entrada con ID: " + id
         ));
 
+        Inventario inventarioViejo = entrada.getInventario();
+        if (inventarioViejo != null) {
+            BigDecimal stockViejo = new BigDecimal(inventarioViejo.getStock() != null ? inventarioViejo.getStock() : 0);
+            BigDecimal costoPromedioViejo = inventarioViejo.getCostoPromedio() != null ? inventarioViejo.getCostoPromedio() :
+                    BigDecimal.ZERO;
+
+            BigDecimal cantidadVieja = new BigDecimal(entrada.getCantidad());
+            BigDecimal valorRestar = entrada.getCosto();
+
+            BigDecimal valorTotalViejo = stockViejo.multiply(costoPromedioViejo);
+            BigDecimal nuevoStockViejo = stockViejo.subtract(cantidadVieja);
+            BigDecimal nuevoCostoPromedioViejo = BigDecimal.ZERO;
+
+            if (nuevoStockViejo.compareTo(BigDecimal.ZERO) > 0) {
+                BigDecimal nuevoValorTotalViejo = valorTotalViejo.subtract(valorRestar);
+                nuevoCostoPromedioViejo = nuevoValorTotalViejo.divide(nuevoStockViejo, 2, RoundingMode.HALF_UP);
+            }
+
+            inventarioViejo.setStock(nuevoStockViejo.intValue());
+            inventarioViejo.setCostoPromedio(nuevoCostoPromedioViejo);
+            inventarioRepository.save(inventarioViejo);
+        }
+
+        Inventario inventarioNuevo = inventarioService.getOneInventarioEntity(entradaRequestDTO.getIdInventario());
+
+        BigDecimal stockActualNuevo = new BigDecimal(inventarioNuevo.getStock() != null ? inventarioNuevo.getStock() : 0);
+        BigDecimal costoPromedioActualNuevo = inventarioNuevo.getCostoPromedio() != null ? inventarioNuevo.getCostoPromedio() : BigDecimal.ZERO;
+
+        BigDecimal cantidadNueva = new BigDecimal(entradaRequestDTO.getCantidad());
+        BigDecimal costoNuevo = entradaRequestDTO.getCosto(); // Costo total nuevo del DTO
+
+        BigDecimal valorTotalActualNuevo = stockActualNuevo.multiply(costoPromedioActualNuevo);
+        BigDecimal stockTotalNuevo = stockActualNuevo.add(cantidadNueva);
+
+        BigDecimal nuevoCostoPromedioActual = BigDecimal.ZERO;
+        if (stockTotalNuevo.compareTo(BigDecimal.ZERO) > 0) {
+            nuevoCostoPromedioActual = valorTotalActualNuevo.add(costoNuevo)
+                    .divide(stockTotalNuevo, 2, RoundingMode.HALF_UP);
+        }
+
+        inventarioNuevo.setStock(stockTotalNuevo.intValue());
+        inventarioNuevo.setCostoPromedio(nuevoCostoPromedioActual);
+        inventarioRepository.save(inventarioNuevo);
+
         entrada.setCantidad(entradaRequestDTO.getCantidad());
         entrada.setCosto(entradaRequestDTO.getCosto());
         entrada.setDescripcion(entradaRequestDTO.getDescripcion());
@@ -97,6 +139,29 @@ public class EntradaService implements IEntradaService{
     public void deleteEntrada(Long id) {
         Entrada eliminarEntrada = entradaRepository.findById(id).orElseThrow(() -> new NotFoundException("No se ha " +
                 "encontrado la entrada o no existe. Entrada con ID: " + id));
+
+        Inventario inventario = eliminarEntrada.getInventario();
+        if (inventario != null) {
+            BigDecimal stockActual = new BigDecimal(inventario.getStock() != null ? inventario.getStock() : 0);
+            BigDecimal promedioActual = inventario.getCostoPromedio() != null ? inventario.getCostoPromedio() :
+                    BigDecimal.ZERO;
+
+            BigDecimal stockEliminar = new BigDecimal(eliminarEntrada.getCantidad());
+            BigDecimal costoEliminar = eliminarEntrada.getCosto();
+
+            BigDecimal costoActual = stockActual.multiply(promedioActual);
+
+            BigDecimal cantidadRestante = stockActual.subtract(stockEliminar);
+            BigDecimal nuevoCostoPromedio = BigDecimal.ZERO;
+
+            if (cantidadRestante.compareTo(BigDecimal.ZERO) > 0) {
+                BigDecimal cantidadEliminar = costoActual.subtract(costoEliminar);
+                nuevoCostoPromedio = cantidadEliminar.divide(cantidadRestante, 2, RoundingMode.HALF_UP);
+            }
+
+            inventario.setStock(cantidadRestante.intValue());
+            inventario.setCostoPromedio(nuevoCostoPromedio);
+        }
         entradaRepository.delete(eliminarEntrada);
     }
 }
